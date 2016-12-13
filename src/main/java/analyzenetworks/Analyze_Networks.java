@@ -58,7 +58,7 @@ public class Analyze_Networks implements PlugInFilter {
     private String[] UnCalibratedHeadings = new String[11];
     private String[] CalibratedHeadings = new String[11];
     
-    private String Version = "v0.6.5 r1  06/02/2014";
+    private String Version = "v0.6.6 r1  12/13/2016";
 
 
 	/**
@@ -133,8 +133,7 @@ public class Analyze_Networks implements PlugInFilter {
             for (int i = 1; i <= this.isOriginal.getSize(); i++) {
                 IJ.showStatus("Processing slices...");
                 IJ.showProgress(i, this.isOriginal.getSize());
-                result[i - 1] = new SliceAnalysis(new ImagePlus("", source.getResult().getStack().getProcessor(i)), new ImagePlus("", source.getNetwork().getStack().getProcessor(i)), i, (Integer) Preferences[6], Preferences[8].toString());
-
+                result[i - 1] = new SliceAnalysis(new ImagePlus("", source.getResult().getImageStack().getProcessor(i)), new ImagePlus("", source.getNetwork().getImageStack().getProcessor(i)), i, (Integer) Preferences[6], Preferences[8].toString());
             }
 
             ResultsTable rt = new ResultsTable();
@@ -223,6 +222,6 @@ public class Analyze_Networks implements PlugInFilter {
         new ImageJ();
 
         // run the plugin
-        IJ.runPlugIn(clazz.getName(), "");
+        //IJ.runPlugIn(clazz.getName(), "");
     }
 }
