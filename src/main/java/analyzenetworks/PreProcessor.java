@@ -53,7 +53,7 @@ public PreProcessor(ImagePlus imp, Object[] Preferences) {
                         
                         if((String)Preferences[10] == "Yes"){
                             
-                            IJ.log("Removing gris with 3x3 convolution..." + Preferences[11] + " iterations.");
+                            IJ.log("Removing grids with 3x3 convolution..." + Preferences[11] + " iterations.");
                             
                             ImagePlus imageGrid = imageResult.duplicate();
                             imageGrid.setTitle("GridRemoval");
@@ -68,16 +68,16 @@ public PreProcessor(ImagePlus imp, Object[] Preferences) {
 			if((String)Preferences[3] == "Yes"){IJ.run(imageResult, "Maximum...", "radius="+Preferences[4]+" stack");IJ.log("Maximum...  radius="+Preferences[4]+" stack");}
 			if((String)Preferences[5] == "Yes"){IJ.run(imageResult, "Gaussian Blur...", "sigma=3 stack");IJ.log("Gaussian Blur...  sigma=3 stack");}		
 			IJ.run(imageResult, "Convert to Mask", "method=" + Preferences[9].toString() +  " background=Dark calculate stack");IJ.log("Calculating Mask... method: " + Preferences[9].toString());
-                        this.imageNetwork = imageResult.duplicate();
-			IJ.run(imageResult, "Skeletonize", "stack");
-                           
+                        if(!imageResult.isInvertedLut()){IJ.run(imageResult, "Invert LUT", "");}
+                        imageNetwork = imageResult.duplicate();
+			IJ.run(imageResult, "Skeletonize", "stack"); 
                         imp.close();
                         
                         
                         //imageOriginal.show();
-			//imageResult.show();
-                        //imageNetwork.setTitle("Mask Result");
-                        //imageNetwork.show();
+//			imageResult.show();
+//                        imageNetwork.setTitle("Mask Result");
+//                        imageNetwork.show();
 			//getResults(imp);
 	}
 public ImagePlus getNetwork(){return this.imageNetwork;}
