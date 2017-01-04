@@ -30,10 +30,7 @@ import ij.ImagePlus;
 import ij.IJ;
 import ij.*;
 
-/**
- * This is a template for a plugin that requires one image to
- * be opened, and takes it as parameter.
- */
+
 public class PreProcessor {
 	private ImagePlus imageOriginal;  
         private ImagePlus imageResult;
@@ -45,9 +42,6 @@ public PreProcessor(ImagePlus imp, Object[] Preferences) {
                         this.imageOriginal = imp.duplicate();
                         this.imageOriginal.setTitle("Original");
                         this.imageResult = imp.duplicate();
-                        
-                        
-                        //this.imageResult = new ImagePlus("PreProcessing Result", imp.getStack());
                         
                         IJ.log("Starting PreProcessing...");
                         
@@ -72,13 +66,7 @@ public PreProcessor(ImagePlus imp, Object[] Preferences) {
                         imageNetwork = imageResult.duplicate();
 			IJ.run(imageResult, "Skeletonize", "stack"); 
                         imp.close();
-                        
-                        
-                        //imageOriginal.show();
-//			imageResult.show();
-//                        imageNetwork.setTitle("Mask Result");
-//                        imageNetwork.show();
-			//getResults(imp);
+
 	}
 public ImagePlus getNetwork(){return this.imageNetwork;}
 public ImagePlus getResult(){return this.imageResult;}
