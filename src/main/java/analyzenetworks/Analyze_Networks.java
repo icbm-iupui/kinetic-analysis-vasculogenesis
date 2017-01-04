@@ -41,10 +41,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * This is a template for a plugin that requires one image to be opened, and
- * takes it as parameter.
- */
+
 public class Analyze_Networks implements PlugInFilter {
 
     private ImagePlus image;
@@ -53,7 +50,6 @@ public class Analyze_Networks implements PlugInFilter {
 
     private Object[] Preferences = new Object[9];
     private Calibration cal = new Calibration();
-	//private ImageStack isResults;
 
     private String[] UnCalibratedHeadings = new String[11];
     private String[] CalibratedHeadings = new String[11];
@@ -61,17 +57,8 @@ public class Analyze_Networks implements PlugInFilter {
     private String Version = "v0.6.6 r1  12/13/2016";
 
 
-	/**
-	 * This method gets called by ImageJ / Fiji to determine
-	 * whether the current image is of an appropriate type.
-	 *
-	 * @param arg can be specified in plugins.config
-     * @param imp
-	 * @param image is the currently opened image
-     * @return
-	 * @see ij.plugin.filter.PlugInFilter#setup(java.lang.String, ij.ImagePlus)
-	 */
-	@Override
+
+    @Override
     public int setup(String arg, ImagePlus imp) {
 
         this.image = imp;
@@ -80,13 +67,7 @@ public class Analyze_Networks implements PlugInFilter {
 
     }
 
-    /**
-     * This method is run when the current image was accepted.
-     *
-     * @param ip is the current slice (typically, plugins use the ImagePlus set
-     * above instead).
-     * @see ij.plugin.filter.PlugInFilter#run(ij.process.ImageProcessor)
-     */
+
     @Override
     public void run(ImageProcessor ip) {
 
@@ -104,8 +85,6 @@ public class Analyze_Networks implements PlugInFilter {
         this.UnCalibratedHeadings = uch;
         this.CalibratedHeadings = ch;
 
-            //Pre-process the image
-        //IJ.log("Pre-processing image...");
         IJ.showStatus("Gathering settings...");
 
         try {
@@ -220,8 +199,5 @@ public class Analyze_Networks implements PlugInFilter {
 
         // start ImageJ
         new ImageJ();
-
-        // run the plugin
-        //IJ.runPlugIn(clazz.getName(), "");
     }
 }
