@@ -40,11 +40,6 @@ public class SliceAnalysis {
 
     private ArrayList Results;
     AnalyzeSkeleton_ skel = new AnalyzeSkeleton_();
-    //private ImagePlus image;
-    //private ImagePlus imageNetwork;
-    //private ImageStack stackNetwork;
-    //private ImagePlus imageSkeleton;
-    //private ImageProcessor imp;
 
     final int NETWORKAREA = 2;
     final int NETWORKCOUNT = 1;
@@ -74,7 +69,7 @@ public class SliceAnalysis {
 //                # of Branches
 //
 //                they must be summed across all skeletons
-                   // IJ.log("                ...Extracting values");
+
         int[] nodes = Output.getJunctions();
         int[] triples = Output.getTriples();
         int[] quadruples = Output.getQuadruples();
@@ -91,10 +86,6 @@ public class SliceAnalysis {
         int countNetwork = 0;
         int averageSizeNetwork = 0;
 
-                //Output.;
-		//NEW AND COOL IDEAS// distribution characteristics?  statistical test of branch lengths
-        //NEW AND COOL IDEAS// average network size with time per network, object tracking/growing etc.
-        //NEW AND COOL IDEAS// multiparametric analysis a la VTC, machine learning etc.
         IJ.showStatus("Summarizing skeleton and networks...");
         for (int i = 0; i <= countSkeletons - 1; i++) {
 
@@ -133,8 +124,6 @@ public class SliceAnalysis {
 
         ParticleAnalyzer pa = new ParticleAnalyzer(EXCLUDE_EDGE_PARTICLES & LIMIT, AREA, rt, 0, Double.POSITIVE_INFINITY, 0, 1);
         pa.analyze(imp_pass);
-
-        //IJ.log("Network count:" + rt.getCounter());
         return rt.getCounter();
 
     }
@@ -164,7 +153,6 @@ public class SliceAnalysis {
         pa.analyze(impMask);
         countRt = rt.getCounter();
 
-        //rt.show("Slice");
         for (int c = 0; c <= countRt - 1; c++) {
 
             networkArea = networkArea + rt.getValueAsDouble(0, c);
