@@ -40,26 +40,7 @@ public class Preferences extends java.lang.Object implements DialogListener {
     public boolean showDialog() {
 
         int[] windowList = WindowManager.getIDList();
-        String[] YesNo = {"Yes", "No"};
-
-//		if (windowList==null || windowList.length<1) {
-//			//error();
-//			IJ.showMessage("Error", "No open images");
-//			return;
-//		}
-//		String[] titles = new String[windowList.length];
-//		for (int i=0; i<windowList.length; i++) {
-//			ImagePlus imp_temp = WindowManager.getImage(windowList[i]);
-//			titles[i] = imp_temp!=null?imp_temp.getTitle():"";
-//		}
-//                        IJ.run(imageResult, "Subtract Background...", "rolling=10 stack");
-//			IJ.run(imageResult, "Enhance Contrast...", "saturated=0.4 normalize equalize process_all");
-//			IJ.run(imageResult, "Maximum...", "radius=2 stack");
-//			IJ.run(imageResult, "Gaussian Blur...", "sigma=3 stack");		
-//			IJ.run(imageResult, "Convert to Mask", "method=Mean background=Dark stack");
-//                        this.imageNetwork = imageResult.duplicate();
-//			IJ.run(imageResult, "Skeletonize", "stack");
-//                        
+        String[] YesNo = {"Yes", "No"};              
         String GridRemoval = "Yes";
         int GridRemovalIterations = 10;
         String Background = "Yes";
@@ -78,7 +59,7 @@ public class Preferences extends java.lang.Object implements DialogListener {
         GenericDialog gd = new GenericDialog("Network Analysis v0.6.5");
 
         gd.addMessage("Preprocessing Options:");
-        gd.addRadioButtonGroup("Grid Removal:", YesNo, 1, 1, YesNo[1]);
+        gdaddRadioButtonGroup("Grid Removal:", YesNo, 1, 1, YesNo[1]);
         gd.addNumericField("    Iterations:", GridRemovalIterations, 0);
         gd.addRadioButtonGroup("Background Subtraction:", YesNo, 1, 1, YesNo[0]);
         if ("Yes".equals(Background)) {
@@ -116,7 +97,6 @@ public class Preferences extends java.lang.Object implements DialogListener {
         NetworkSize = (int) gd.getNextNumber();
         ExcludeEdge = gd.getNextRadioButton();
 
-        //Object[] Preferences = new Object[7];
         this.Preferences[0] = Background;
         this.Preferences[1] = BackgroundRadius;
         this.Preferences[2] = Contrast;
