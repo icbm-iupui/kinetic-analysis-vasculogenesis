@@ -59,7 +59,7 @@ public class Preferences extends java.lang.Object implements DialogListener {
         GenericDialog gd = new GenericDialog("Network Analysis v0.6.5");
 
         gd.addMessage("Preprocessing Options:");
-        gdaddRadioButtonGroup("Grid Removal:", YesNo, 1, 1, YesNo[1]);
+        gd.addRadioButtonGroup("Grid Removal:", YesNo, 1, 1, YesNo[1]);
         gd.addNumericField("    Iterations:", GridRemovalIterations, 0);
         gd.addRadioButtonGroup("Background Subtraction:", YesNo, 1, 1, YesNo[0]);
         if ("Yes".equals(Background)) {
