@@ -62,6 +62,10 @@ public class Analyze_Networks implements PlugInFilter {
     public int setup(String arg, ImagePlus imp) {
 
         this.image = imp;
+        
+        if (this.image.getProcessor().getBitDepth() != 8) {
+            IJ.run(this.image, "8-bit", "");
+        }
 
         return DOES_8G | DOES_16;
 
@@ -70,10 +74,6 @@ public class Analyze_Networks implements PlugInFilter {
 
     @Override
     public void run(ImageProcessor ip) {
-
-        if (this.image.getProcessor().getBitDepth() != 8) {
-            IJ.run(this.image, "8-bit", "");
-        }
 
         this.isOriginal = this.image.getStack();
         //this.isProcessed = this.image.duplicate().getStack();
